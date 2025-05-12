@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+:root {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#root {
+  @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-white m-0 p-0;
+}
+
