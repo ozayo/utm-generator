@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { FaReact } from "react-icons/fa";
 import { SiVite } from "react-icons/si";
 import { FcLink } from "react-icons/fc";
+import { MdOutlineSwitchAccessShortcutAdd } from "react-icons/md";
+
 
 function App() {
   // State hooks for form inputs and options
@@ -115,11 +117,12 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
+    <div className="flex flex-col items-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
       <div className="container max-w-xl w-full bg-white p-6 rounded-xl shadow-lg text-sm">
         <h1 className="text-2xl font-bold text-center flex items-center justify-center gap-5 text-gray-800 mb-6"><FcLink /> UTM Link Generator</h1>
-        <p className='text-center max-w-40'>If you need more information about UTM parameters, please read my <a href='https://www.ozayozdemir.com/blog/understanding-utm-parameters/' target='_blank'>blog post here</a>.</p>
-
+        <div className='mb-4 items-center flex justify-center'>
+          <p className='text-center max-w-96'>If you need more information about UTM parameters, please read my <a className='bg-lime-100 hover:bg-lime-200' href='https://www.ozayozdemir.com/blog/understanding-utm-parameters/' target='_blank'>blog post here ↗</a>.</p>
+          </div>
         {/* Options */}
         <div className="mb-6">
           <label className="block text-gray-700 font-bold mb-2">Options:</label>
@@ -197,7 +200,7 @@ function App() {
         {/* UTM Campaign */}
         <div className="mb-5">
           <label htmlFor="utmCampaign" className="block text-gray-700 font-bold mb-2 required-label">
-            UTM Campaign (e.g., spring_sale, product_launch)
+            UTM Campaign <span className='font-normal'>(e.g., spring_sale, product_launch)</span>
           </label>
           <input
             type="text"
@@ -215,7 +218,7 @@ function App() {
             {/* UTM Term */}
             <div className="mb-5">
               <label htmlFor="utmTerm" className="block text-gray-700 font-bold mb-2">
-                UTM Term (e.g., running+shoes - usually for paid search)
+                UTM Term <span className='font-normal'>(e.g., running+shoes - usually for paid search)</span>
               </label>
               <input
                 type="text"
@@ -230,7 +233,7 @@ function App() {
             {/* UTM Content */}
             <div className="mb-5">
               <label htmlFor="utmContent" className="block text-gray-700 font-bold mb-2">
-                UTM Content (e.g., banner_top, textlink_bottom)
+                UTM Content <span className='font-normal'>(e.g., banner_top, textlink_bottom)</span>
               </label>
               <input
                 type="text"
@@ -244,27 +247,15 @@ function App() {
           </div>
         )}
 
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-5">
+        {/* Button */}
+        <div className="flex items-center justify-center mb-5">
           <button
             onClick={generateLink}
-            className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200 ease-in-out"
-          >
-            Generate Link
-          </button>
-          <button
-            onClick={copyLink}
-            className="flex-1 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition duration-200 ease-in-out"
-          >
-            Copy Link
+            className="flex w-full items-center justify-center gap-2 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200 ease-in-out cursor-default">
+            Generate Link <MdOutlineSwitchAccessShortcutAdd size="1.5em" className='rotate-90' />
           </button>
         </div>
-         {/* Copy Feedback */}
-         {copyFeedback && (
-             <div className="text-center text-green-600 font-semibold mb-4">
-                 {copyFeedback}
-             </div>
-         )}
+
 
 
         {/* Generated URL Display */}
@@ -274,16 +265,29 @@ function App() {
           </label>
           <div
             id="outputUrlDisplay"
-            className="w-full p-4 border border-gray-300 bg-gray-200 rounded-md break-all font-mono text-gray-800 select-all cursor-text overflow-x-auto"
-          >
+            className="w-full p-4 border border-gray-300 bg-gray-200 rounded-md break-all font-mono text-gray-800 select-all cursor-text overflow-x-auto">
             {generatedUrl || 'Your generated URL will appear here.'}
           </div>
+          {/* Button */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-5 mt-5">
+            <button
+              onClick={copyLink}
+              className="flex-1 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition duration-200 ease-in-out">
+              Copy Link
+            </button>
+          </div>
+          {/* Copy Feedback */}
+         {copyFeedback && (
+             <div className="text-center text-green-600 font-semibold mb-4">
+                 {copyFeedback}
+             </div>
+         )}
         </div>
 
       </div>
       <div className="text-center text-gray-500 text-xs mt-4">
         <p className='flex items-center justify-center gap-1.5'>Made with ☕, <FaReact /> & <SiVite />  by <a href="https://www.ozayozdemir.com" target='_blank' className="text-blue-500 hover:underline">Ozay Ozdemir</a></p>
-        <p>Source code available on <a href="#" className="text-blue-500 hover:underline">GitHub</a></p>
+        <p>Source code available on <a href="https://github.com/ozayo/utm-generator" className="text-blue-500 hover:underline">GitHub</a></p>
         <p>Icons by <a href="https://react-icons.github.io/react-icons/" target='_blank' className="text-blue-500 hover:underline">React Icons</a></p>
       </div>
     </div>
